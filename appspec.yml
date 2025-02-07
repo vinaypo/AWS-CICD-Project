@@ -2,4 +2,4 @@ version: 0.0
 os: linux
 files:
     - source: app.war
-        destination: /opt/tomcat/webapps/
+      destination: /opt/tomcat/webapps/
