@@ -28,7 +28,7 @@
   <body>
     <tagfiles:header />
     <div id="hate" class="container snakes snake-hater">
-      <h1 class="cover-heading">This is for the AWS-CICD-PROJECT/h1>
+	    <h1 class="cover-heading">This is for the AWS-CICD-PROJECT</h1>
       <p class="lead">Hello, This is Vinay Kumar Podila</p>
       <!--Intro -->
       <h2>Do you or a loved one hate snakes?</h2>
