@@ -1,6 +1,7 @@
 # AWS-CICD-Project
 ### This diagram represents a CI/CD pipeline where code changes pushed to GitHub trigger an automated process that builds, stores, and deploys the application on AWS infrastructure.
 
+```
 Cloud9: It's an aws service that helps in integrated development environment (IDE) that allows developers to write, run, and debug code in a browser.
 
 GitHub: It's a version control platform that hosts repositories, enabling developers to push, pull, and manage their code.
@@ -18,4 +19,6 @@ Amazon EC2 (Elastic Compute Cloud): It's a cloud-based virtual server used to ho
 IAM (Identity and Access Management) role: A security service that manages permissions and access controls for AWS resources.
 
 User: The end-user who accesses the deployed application running on EC2 instances.
+```
+
 ![AWS_CICD_PROJECT](https://github.com/user-attachments/assets/6369bfdf-4deb-40d1-aae7-758331b16199)
