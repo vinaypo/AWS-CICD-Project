@@ -20,7 +20,7 @@ IAM (Identity and Access Management) role: A security service that manages permi
 User: The end-user who accesses the deployed application running on EC2 instances.
 ```
 
-# The AWS CI/CD pipeline depicted in the diagram follows an automated deployment process that streamlines code development, building, testing, and deployment using AWS services.
+### The AWS CI/CD pipeline depicted in the diagram follows an automated deployment process that streamlines code development, building, testing, and deployment using AWS services.
 
      1) The process begins with the developer writing and testing the code in AWS Cloud9, a cloud-based IDE. Once the code is ready, it is pushed to GitHub, which acts as a version control system. The push to GitHub triggers AWS CodePipeline, which orchestrates the entire CI/CD workflow by automating the process.
 
