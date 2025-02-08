@@ -1,3 +1,2 @@
 AWS-CICD-Project
 
-AWS_CICD_PROJECT.jpg
