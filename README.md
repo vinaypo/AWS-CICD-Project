@@ -1,5 +1,5 @@
 # AWS-CICD-Project
-This diagram represents a CI/CD pipeline where code changes pushed to GitHub trigger an automated process that builds, stores, and deploys the application on AWS infrastructure.
+### This diagram represents a CI/CD pipeline where code changes pushed to GitHub trigger an automated process that builds, stores, and deploys the application on AWS infrastructure.
 
 Cloud9: It's an aws service that helps in integrated development environment (IDE) that allows developers to write, run, and debug code in a browser.
 
