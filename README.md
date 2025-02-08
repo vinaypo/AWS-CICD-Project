@@ -1,5 +1,4 @@
 # AWS-CICD-Project
-### This diagram represents a CI/CD pipeline where code changes pushed to GitHub trigger an automated process that builds, stores, and deploys the application on AWS infrastructure.
 
 ```
 Cloud9: It's an aws service that helps in integrated development environment (IDE) that allows developers to write, run, and debug code in a browser.
@@ -20,5 +19,15 @@ IAM (Identity and Access Management) role: A security service that manages permi
 
 User: The end-user who accesses the deployed application running on EC2 instances.
 ```
+
+# The AWS CI/CD pipeline depicted in the diagram follows an automated deployment process that streamlines code development, building, testing, and deployment using AWS services.
+
+     1) The process begins with the developer writing and testing the code in AWS Cloud9, a cloud-based IDE. Once the code is ready, it is pushed to GitHub, which acts as a version control system. The push to GitHub triggers AWS CodePipeline, which orchestrates the entire CI/CD workflow by automating the process.
+
+     2) AWS CodeBuild retrieves the source code from GitHub, compiles it, runs tests, and then packages the application into deployable artifacts. These artifacts are then stored in Amazon S3 (Simple Storage Service), which serves as a secure storage location for the build outputs.
+
+     3) Next, AWS CodeDeploy takes over by fetching the stored artifacts from S3 and deploying them automatically to Amazon EC2 instance, ECS, Lambda and much more. It handles the CD (Continuous Delivery) part. These EC2 instances act as servers that run the application. To ensure secure access between services, IAM (Identity and Access Management) manages permissions, allowing EC2 to access S3 and CodeDeploy securely.
+
+     4) The user accesses the deployed application via a web browser or interface, completing the automated deployment cycle. This setup ensures a seamless, scalable, and efficient CI/CD pipeline for continuous integration and deployment. 🚀
 
 ![AWS_CICD_PROJECT](https://github.com/user-attachments/assets/6369bfdf-4deb-40d1-aae7-758331b16199)
