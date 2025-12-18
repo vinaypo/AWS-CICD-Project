@@ -1,0 +1,55 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_REGION: us-east-1
+    ECR_REPOSITORY: simple-python-flask-app
+    IMAGE_TAG: latest
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r simple-python-app/requirements.txt
+      - pip install bandit
+      - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+      - mv ./bin/trivy /usr/local/bin/trivy
+
+  pre_build:
+    commands:
+      - echo "Running code security scan (Bandit)..."
+      - bandit -r /simple-python-app -ll
+
+      - echo "Running filesystem vulnerability scan (Trivy)..."
+      - trivy fs --severity HIGH,CRITICAL --exit-code 1 /simple-python-app
+
+      - echo "Logging in to Amazon ECR..."
+      - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+      - aws ecr get-login-password --region $AWS_REGION \
+        | docker login --username AWS --password-stdin \
+        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+
+      - IMAGE_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - cd /simple-python-app
+      - docker build -t $IMAGE_URI .
+
+      - echo "Scanning Docker image with Trivy..."
+      - trivy image --severity HIGH,CRITICAL --exit-code 1 $IMAGE_URI
+
+      - echo "Pushing image to Amazon ECR..."
+      - docker push $IMAGE_URI
+
+  post_build:
+    commands:
+      - echo "ECR image build, scan, and push completed successfully!"
+
+artifacts:
+  files:
+    - "**/*"
+  base-directory: /simple-python-app
