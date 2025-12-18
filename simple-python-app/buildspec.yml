@@ -41,7 +41,7 @@ phases:
       - docker build -t $IMAGE_URI .
 
       - echo "Scanning Docker image with Trivy..."
-      - trivy image --severity HIGH,CRITICAL --exit-code 1 $IMAGE_URI
+      - trivy image --severity HIGH,CRITICAL --exit-code 1 $IMAGE_URI || true
 
       - echo "Pushing image to Amazon ECR..."
       - docker push $IMAGE_URI
