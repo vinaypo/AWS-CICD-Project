@@ -26,11 +26,10 @@ phases:
       - trivy fs --severity HIGH,CRITICAL --exit-code 1 simple-python-app
 
       - echo "Logging in to Amazon ECR..."
-      - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-      - aws ecr get-login-password --region $AWS_REGION \
-        | docker login --username AWS --password-stdin \
+      - |
+        aws ecr get-login-password --region $AWS_REGION | \
+        docker login --username AWS --password-stdin \
         $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-
       - IMAGE_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
 
   build:
