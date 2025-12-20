@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     AWS_REGION: us-east-1
-    ECR_REPOSITORY: simple-python-flask-app
+    ECR_REPOSITORY: python-webapp
     IMAGE_TAG: latest
 
 phases:
