@@ -1,26 +1,38 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 
-def create_app():
+def create_app() -> Flask:
     app = Flask(__name__)
 
     @app.route("/")
     def home():
-        return (
-            "Hello, world! 👋<br>"
-            "Add your name to the URL like this:<br>"
-            "<b>/your-name</b>"
-        )
+        """Home page with instructions."""
+        html = """
+        <h1>Hello, world! 👋</h1>
+        <p>Add your name to the URL like this:</p>
+        <pre>/your-name</pre>
+        <p>Check health status at <a href="/health">/health</a></p>
+        """
+        return html
 
     @app.route("/<string:name>")
-    def greet(name):
-        return f"Hello, world! This is <b>{name.capitalize()}</b> 😊"
-    
+    def greet(name: str):
+        """Greet a user by name with a friendly message."""
+        clean_name = name.strip().capitalize()
+        html = f"""
+        <h1>Hello, {clean_name}! 😊</h1>
+        <p>Welcome to our Flask app!</p>
+        <a href="/">Go back home</a>
+        """
+        return html
+
     @app.route("/health")
     def health():
-        return {"status": "ok"}, 200
+        """Simple health check endpoint."""
+        return jsonify(status="ok"), 200
 
     return app
 
+
 if __name__ == "__main__":
     app = create_app()
-    app.run(host="0.0.0.0", port=5000)  # nosec: B104
+    app.run(host="0.0.0.0", port=5000)
